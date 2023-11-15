@@ -1,20 +1,17 @@
 import java.util.Scanner
 
 class InputController(val input: Scanner) {
-    fun getUserInputNumber(
-        availableRange: IntRange,
-        validation: (value: Int, availableRange: IntRange) -> Boolean
-    ): Int {
+    fun getUserInputNumber(validation: (value: Int) -> Boolean): Int {
         val userInput: Int
-            try {
-                userInput = input.nextLine().toInt()
-                if (validation(userInput, availableRange)) {
-                    return userInput;
-                }
-                println("Введенного числа нет среди допустимых команд, попробуйте ещё раз")
-            } catch (e: Exception) {
-                println("Пожалуйста, введите число для продолжения работы")
+        try {
+            userInput = input.nextLine().toInt()
+            if (validation(userInput)) {
+                return userInput;
             }
+            println("Введенного числа нет среди допустимых команд, попробуйте ещё раз")
+        } catch (e: Exception) {
+            println("Пожалуйста, введите число для продолжения работы")
+        }
         return -1;
     }
 

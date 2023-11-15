@@ -1,9 +1,9 @@
 package screens
 
 import InputController
-import models.AModel
+import models.IModel
 
-abstract class AScreen<T: AModel>(
+abstract class AScreen<T: IModel>(
     open val title: String,
     open val listOfElements: ArrayList<T>,
     open val inputController: InputController)
@@ -21,18 +21,17 @@ abstract class AScreen<T: AModel>(
         showExitingLine()
     }
 
-    open fun creation() {}
-    open fun selection(position: Int) {}
+    open fun create() {}
+    open fun select(position: Int) {}
     fun execute () {
         while (true) {
             showMenu()
             val command = inputController.getUserInputNumber(
-                0..listOfElements.size + 1,
-                validation = { number, numberRange -> number in numberRange }
+                validation = { number -> number in 0..listOfElements.size + 1 }
             )
             when (command) {
-                0 -> creation()
-                in 1 until listOfElements.size + 1 -> selection(command - 1)
+                0 -> create()
+                in 1 until listOfElements.size + 1 -> select(command - 1)
                 listOfElements.size + 1 -> break
                 else -> continue
             }

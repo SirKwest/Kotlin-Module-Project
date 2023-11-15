@@ -17,7 +17,7 @@ class NoteScreen(
         println("${listOfElements.size + 1}. Назад")
     }
 
-    override fun creation() {
+    override fun create() {
         println("Введите название:")
         val noteName = inputController.getUserInputText { value -> value.isNotBlank() }
         println("Введите содержимое:")
@@ -25,7 +25,7 @@ class NoteScreen(
         listOfElements.add(Note(noteName, noteContent))
     }
 
-    override fun selection(position: Int) {
+    override fun select(position: Int) {
         println("=================")
         println("Содержимое заметки:")
         println(listOfElements[position].content)

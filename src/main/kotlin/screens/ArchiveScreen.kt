@@ -13,12 +13,12 @@ class ArchiveScreen(
         println("0. Создать архив")
     }
 
-    override fun creation() {
+    override fun create() {
         println("Введите название архива")
         listOfElements.add(Archive(inputController.getUserInputText { value -> value.isNotBlank() }))
     }
 
-    override fun selection(position: Int) {
+    override fun select(position: Int) {
         NoteScreen("Список заметок", listOfElements[position].containedNotes, inputController).execute()
     }
 }

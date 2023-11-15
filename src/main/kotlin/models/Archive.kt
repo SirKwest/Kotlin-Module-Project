@@ -1,9 +1,5 @@
 package models
 
-class Archive(override val title: String): AModel(title) {
+class Archive(override val title: String): IModel {
     val containedNotes: ArrayList<Note> = arrayListOf()
-
-    override fun getCreationName(): String  {
-        return "архив"
-    }
 }
